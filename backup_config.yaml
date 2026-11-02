@@ -1,0 +1,63 @@
+default_profile: local_sqlite
+profiles:
+  local_sqlite:
+    database:
+      type: sqlite
+      database: ./data/sample.db
+    storage:
+      type: local
+      local_path: ./backups
+    options:
+      backup_type: full
+      compression: gzip
+      compression_level: 6
+    notification:
+      slack_webhook_url: null
+  production_mysql:
+    database:
+      type: mysql
+      host: localhost
+      port: 3306
+      username: root
+      password: ${MYSQL_PASSWORD}
+      database: production_db
+    storage:
+      type: s3
+      s3_bucket: my-company-db-backups
+      s3_prefix: mysql-prod
+      s3_region: us-east-1
+    options:
+      backup_type: full
+      compression: zstd
+      compression_level: 3
+      retention_count: 14
+    notification:
+      slack_webhook_url: https://hooks.slack.com/services/...
+      notify_on_success: true
+      notify_on_failure: true
+  analytics_postgres:
+    database:
+      type: postgres
+      host: localhost
+      port: 5432
+      username: postgres
+      password: ${PGPASSWORD}
+      database: analytics
+    storage:
+      type: local
+      local_path: ./backups/postgres
+    options:
+      backup_type: full
+      compression: gzip
+  app_mongo:
+    database:
+      type: mongodb
+      host: localhost
+      port: 27017
+      database: app_db
+    storage:
+      type: local
+      local_path: ./backups/mongodb
+    options:
+      backup_type: full
+      compression: gzip
