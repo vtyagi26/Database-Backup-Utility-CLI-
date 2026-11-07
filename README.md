@@ -1,12 +1,9 @@
-# 🛡️ Database Backup Utility (`db-backup`) — Modern C++ Edition
+# Database Backup Utility (`db-backup`)
 
 A high-performance, cross-platform Command-Line Interface (CLI) utility written in **Modern C++ (C++14/17)** for multi-DBMS backup automation, streaming compression, authenticated encryption, retention pruning, and selective disaster recovery.
 
 ---
-
-## 🌟 Why this is a Strong New Grad Project
-
-This project demonstrates core **systems programming** and **modern C++** concepts that interviewers look for:
+Overview
 
 1. **Object-Oriented Design & Polymorphic Abstractions:**
    - Abstract interfaces (`IDatabaseEngine`, `IStorageBackend`, `ICompressor`) with pure virtual functions and `std::unique_ptr` ownership semantics.
